@@ -1,7 +1,17 @@
 exports.Query = {
     hello: (parent, args, context) => "World",
     //products: (parent, args, context)
-    products: (parent, args, {products}) => products,
+    products: (parent, {filter}, {products}) => {
+      let filteredProducts = products
+      if(filter){
+        if (filter.onSale === true){
+          filteredProducts = filteredProducts.filter(product => {
+            return product.onSale
+          })
+        }
+      }
+      return filteredProducts    
+    },
     // product: (parent, args, context)
     product: (parent, {id}, {products}) => {
      return products.find((product) => product.id === id)
