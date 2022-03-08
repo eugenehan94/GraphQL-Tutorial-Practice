@@ -1,12 +1,23 @@
+const { reviews } = require("../db")
+
 exports.Query = {
     hello: (parent, args, context) => "World",
     //products: (parent, args, context)
     products: (parent, {filter}, {products}) => {
       let filteredProducts = products
       if(filter){
-        if (filter.onSale === true){
+        const {onSale, avgRating} = filter
+        if (onSale === true){
           filteredProducts = filteredProducts.filter(product => {
             return product.onSale
+          })
+        }
+        if ([1,2,3,4,5].includes(avgRating)){
+          filterProducts = filteredProducts.filter((product) => {
+            let sumRating = 0;
+            reviews.forEach(review => {
+              
+            })
           })
         }
       }

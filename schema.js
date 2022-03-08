@@ -32,5 +32,6 @@ exports.typeDefs = gql`
   }
   input ProductsFilterInput {
     onSale: Boolean
+    avgRating: Int
   }
 `;
